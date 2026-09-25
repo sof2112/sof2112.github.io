@@ -1,0 +1,163 @@
+/* =========================================================
+   Portafolios — Sofía Cabrera
+   Paleta: marfil cálido, ciruela oscuro, rosa empolvado, lila
+   ========================================================= */
+
+:root {
+    --bg: #FBF7F5;
+    --ink: #3E2F35;
+    --mauve: #C08497;
+    --lilac: #A98FC2;
+    --pale: #F3E1E6;
+    --line: #E4CFD6;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2.5rem 1.5rem;
+    font-family: 'Jost', sans-serif;
+}
+
+.tarjeta {
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* ---------- Encabezado ---------- */
+
+.encabezado {
+    margin-bottom: 3rem;
+}
+
+.nombre {
+    font-family: 'Edu QLD Hand', cursive;
+    font-weight: 600;
+    font-size: clamp(2.75rem, 10vw, 3.75rem);
+    color: var(--ink);
+    margin: 0;
+    line-height: 1;
+    /* leve inclinación para que se sienta como una firma trazada a mano */
+    transform: rotate(-2deg);
+}
+
+.subtitulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--mauve);
+    margin: 0.6rem 0 0;
+    letter-spacing: 0.02em;
+}
+
+/* ---------- Lista de proyectos ---------- */
+
+.enlaces {
+    width: 100%;
+}
+
+.lista-proyectos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.proyecto {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.95rem 1.5rem;
+    background: var(--pale);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    overflow: hidden;
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, transform 0.25s ease;
+}
+
+.proyecto span {
+    position: relative;
+    z-index: 1;
+}
+
+/* trazo dibujado a mano que aparece bajo el texto al pasar el cursor */
+.proyecto .trazo {
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    bottom: 0.55rem;
+    height: 12px;
+    width: 64%;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.proyecto .trazo path {
+    fill: none;
+    stroke: var(--mauve);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 260;
+    stroke-dashoffset: 260;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.proyecto:hover,
+.proyecto:focus-visible {
+    background-color: var(--bg);
+    border-color: var(--mauve);
+    color: var(--mauve);
+    transform: translateY(-2px);
+}
+
+.proyecto:hover .trazo path,
+.proyecto:focus-visible .trazo path {
+    stroke-dashoffset: 0;
+}
+
+.proyecto:focus-visible {
+    outline: 2px solid var(--lilac);
+    outline-offset: 3px;
+}
+
+/* ---------- Accesibilidad: movimiento reducido ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .proyecto,
+    .proyecto .trazo path {
+        transition: none;
+    }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 360px) {
+    .nombre {
+        font-size: 2.5rem;
+    }
+}
